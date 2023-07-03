@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
+import "./App.css";
+import AuthPage from "./AuthPage";
+import Card from "./Card";
 
-function App() {
+function App({ prefix = '' }) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter basename="/">
+      <nav>
+        <Link to={`${prefix}/auth/test`} >To Test </Link>
+      </nav>
+        <Routes>
+          <Route path={`${prefix}/auth`} element={<AuthPage />}>
+            <Route path="test/" element={<Card />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
